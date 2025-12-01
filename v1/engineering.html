@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="it">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+    <title>Engineering – Swing:IT</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+
+  <body>
+    <div class="page-wrapper">
+      <!-- header comune (stesso blocco di index) -->
+      <header class="header">
+  <div class="header-inner">
+    <a href="index.html" class="logo-wrap">
+      <!-- Usa il logo white-bg su sfondo scuro -->
+      <img src="img/SwingIt_Logo_dark-bg.png" alt="Swing:IT logo" />
+      <div class="brand-text">
+        <span>Swing:IT</span>
+        <span>Software Engineering Italia SRL</span>
+      </div>
+    </a>
+
+    <nav class="nav">
+      <a href="chi-siamo.html">Chi Siamo</a>
+      <a href="engineering.html">Engineering</a>
+      <a href="prodotti.html">Prodotti</a>
+      <a href="tecnologie.html">Tecnologie</a>
+      <a href="ricerca-innovazione.html">Ricerca &amp; Innovazione</a>
+      <a href="finanziamenti.html">Finanziamenti</a>
+      <a href="contatti.html">Contatti</a>
+      <a href="lavora-con-noi.html">Lavora con Noi</a>
+    </nav>
+
+    <button class="nav-toggle" aria-label="Apri menu di navigazione">
+      <span class="nav-toggle-bar"></span>
+    </button>
+  </div>
+
+  <nav class="nav-mobile">
+    <a href="index.html">Home</a>
+    <a href="chi-siamo.html">Chi Siamo</a>
+    <a href="engineering.html">Engineering</a>
+    <a href="prodotti.html">Prodotti</a>
+    <a href="tecnologie.html">Tecnologie</a>
+    <a href="ricerca-innovazione.html">Ricerca &amp; Innovazione</a>
+    <a href="finanziamenti.html">Finanziamenti</a>
+    <a href="contatti.html">Contatti</a>
+    <a href="lavora-con-noi.html">Lavora con Noi</a>
+    <a href="privacy.html">Privacy Policy</a>
+  </nav>
+</header>
+
+      <main>
+        <section class="inner-hero">
+          <div class="breadcrumb">Home / Engineering</div>
+          <h1 class="inner-hero-title">Engineering</h1>
+          
+        </section>
+
+        <section class="content">
+          <div class="content-grid">
+            <div>
+              <p>
+                Swing:it offre servizi di automazione industriale quali Manufacturing Intelligence, App Factory Automation, Sistemi SCADA, soluzioni SECS & GEM per le industrie dei Semiconduttori così come per l’Automotive, per le aziende farmaceutiche e industrie della bio-medicina.
+                Swing:It offre supporto a impianti di produzione basati su catene di montaggio, trasporto sospeso, etc attraverso applicazioni, soluzioni web 2.0 e anche in mobilità (Android OS).
+                Le soluzioni sono basate sui modelli e le soluzioni di ErgoTech Systems, Los Alamos – NM – USA. Visita www.ergotech.com per maggiori dettagli.
+                L’azienda opera per la mobilità sostenibile e offre soluzioni per Ferrovie Metropolitane e monorotaie. Particolare risalto rivestono le soluzioni driverless, di monitoraggio e controllo delle linee, del segnalamento e del telerilevamento. L’azienda ha sviluppato il servizio TVCC e supporto alla guida della linea 3 della Metropolitana di Milano.
+              </p>
+            </div>
+
+            <aside class="sidebar-card">
+              <h2>In numeri</h2>
+              <p>Alcuni indicatori chiave sui progetti seguiti e sui partner coinvolti.</p>
+              <ul>
+                <li>Progetti di ricerca nazionali ed europei.</li>
+                <li>Collaborazioni con enti clinici, industriali e accademici.</li>
+                <li>Competenze multidisciplinari su XR, AI, cloud e IoT.</li>
+              </ul>
+            </aside>
+          </div>
+        </section>
+      </main>
+
+      <!-- footer comune -->
+      <footer class="footer">
+  <div class="footer-inner">
+    <div>
+      <h4>Azienda</h4>
+      <p><strong>Software Engineering Italia s.r.l.</strong></p>
+      <p>Piazza A. Lincoln 7, 95128 Catania (CT)</p>
+      <p>(+39) 389 4485840</p>
+      <p><a href="mailto:info@softwareengineering.it">info@softwareengineering.it</a></p>
+    </div>
+
+    <div>
+      <h4>Link utili</h4>
+      <a href="chi-siamo.html">Chi Siamo</a>
+      <a href="lavora-con-noi.html">Lavora con Noi</a>
+    </div>
+
+    <div>
+      <h4>Supporto</h4>
+      <a href="privacy.html">Privacy Policy</a>
+      <a href="contatti.html">Contatti</a>
+    </div>
+
+    <div>
+      <h4>Social</h4>
+      <a href="https://www.facebook.com/softwareengineeringitalia/" target="_blank" rel="noopener"
+        >Facebook</a
+      >
+      <a href="https://www.instagram.com/softwareengineeringitalia/" target="_blank" rel="noopener"
+        >Instagram</a
+      >
+      <a href="https://twitter.com/swingitalia" target="_blank" rel="noopener">Twitter / X</a>
+    </div>
+  </div>
+
+  <div class="footer-note">
+    © <span id="year"></span> Swing:IT – Software Engineering Italia SRL. Tutti i diritti riservati.
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+<script>
+  document.getElementById("year").textContent = new Date().getFullYear();
+</script>
+    </div>
+
+    <script src="js/main.js"></script>
+    <script>
+      document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
+  </body>
+</html>
