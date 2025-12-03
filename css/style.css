@@ -538,6 +538,10 @@ main {
   color: var(--text-muted);
 }
 
+.card p img{
+  border-radius: 16px;
+}
+
 .card-footer {
   margin-top: 0.7rem;
   display: flex;
