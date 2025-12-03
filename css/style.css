@@ -476,7 +476,7 @@ main {
 .section-subtitle {
   font-size: 0.9rem;
   color: var(--text-muted);
-  max-width: 520px;
+  /*max-width: 520px;*/
 }
 
 /* Cards & grids */
