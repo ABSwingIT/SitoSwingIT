@@ -920,3 +920,8 @@ input[type="file"] {
     margin-left: 0;
   }
 }
+
+.no-highlight {
+  text-decoration: none;
+  color: #FFF;
+}
