@@ -2,14 +2,14 @@
 $path = "../";
 $page = "contatti";
 
-// --- LOGICA DI INVIO MAIL ---
-$messaggio_feedback = ""; // Variabile per mostrare esito all'utente
+// Variabili per gestire il popup e feedback
+$show_success_modal = false;
+$messaggio_feedback = ""; 
 
 // Se il modulo è stato inviato (metodo POST)
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     
-    // 1. Raccogliamo e puliamo i dati (Sanitizzazione)
-    // htmlspecialchars serve a impedire che qualcuno inserisca codice malevolo
+    // 1. Raccogliamo e puliamo i dati
     $nome = htmlspecialchars(trim($_POST['nome']));
     $email = filter_var(trim($_POST['email']), FILTER_SANITIZE_EMAIL);
     $oggetto_form = htmlspecialchars(trim($_POST['oggetto']));
@@ -29,18 +29,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $body .= "Messaggio:\n" . $messaggio . "\n";
 
     // 5. Intestazioni (Headers)
-    // Importante: Reply-To permette di rispondere direttamente al mittente cliccando "Rispondi"
-    $headers = "From: noreply@softwareengineering.it\r\n"; // Meglio usare una mail del dominio
+    $headers = "From: noreply@softwareengineering.it\r\n"; 
     $headers .= "Reply-To: $email\r\n";
     $headers .= "X-Mailer: PHP/" . phpversion();
 
     // 6. Invio effettivo
-    // Controllo se i campi obbligatori sono pieni
     if(!empty($nome) && !empty($email) && !empty($messaggio)){
         if (mail($to, $subject, $body, $headers)) {
-            $messaggio_feedback = '<div style="background: #d4edda; color: #155724; padding: 15px; border-radius: 5px; margin-bottom: 20px;">Messaggio inviato con successo! Ti risponderemo presto.</div>';
+            // SUCCESS: Attiviamo il flag per mostrare il popup invece del testo semplice
+            $show_success_modal = true;
         } else {
-            $messaggio_feedback = '<div style="background: #f8d7da; color: #721c24; padding: 15px; border-radius: 5px; margin-bottom: 20px;">Errore nell\'invio del messaggio. Riprova più tardi (Nota: su Localhost potrebbe non funzionare).</div>';
+            $messaggio_feedback = '<div style="background: #f8d7da; color: #721c24; padding: 15px; border-radius: 5px; margin-bottom: 20px;">Errore nell\'invio del messaggio. Riprova più tardi.</div>';
         }
     } else {
         $messaggio_feedback = '<div style="background: #fff3cd; color: #856404; padding: 15px; border-radius: 5px; margin-bottom: 20px;">Per favore compila tutti i campi obbligatori.</div>';
@@ -49,6 +48,58 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 include '../includes/header_it.php'; 
 ?>
+
+<!-- CSS PER IL POPUP (MODALE) -->
+<style>
+  .modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    display: none; /* Nascosto di default */
+    justify-content: center;
+    align-items: center;
+    z-index: 10000;
+    backdrop-filter: blur(5px);
+  }
+
+  .modal-box {
+    background: #111827; /* Colore scuro coerente col sito */
+    border: 1px solid rgba(94, 170, 222, 0.5); /* Bordo azzurro */
+    padding: 2rem;
+    border-radius: 16px;
+    text-align: center;
+    max-width: 400px;
+    width: 90%;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+    animation: popUp 0.3s ease-out forwards;
+  }
+
+  .modal-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    display: block;
+  }
+
+  .modal-title {
+    color: #f9fafb;
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .modal-text {
+    color: #9ca3af;
+    margin-bottom: 1.5rem;
+  }
+
+  @keyframes popUp {
+    from { transform: scale(0.8); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+  }
+</style>
+
         <section class="inner-hero fade-in">
           <div class="breadcrumb"><a href="../index.php">Home</a> / Contatti</div>
           <h1 class="inner-title">Contatti</h1>
@@ -62,7 +113,12 @@ include '../includes/header_it.php';
           <div class="content-grid">
             <div>
               <h2>Scrivici</h2>
-              <form class="form" action="#" method="post">
+              
+              <!-- Messaggio di errore (se presente) -->
+              <?php echo $messaggio_feedback; ?>
+
+              <!-- Action vuota per ricaricare la pagina stessa -->
+              <form class="form" action="" method="post">
                 <div class="form-row">
                   <div class="form-group">
                     <label for="nome">Nome e Cognome</label>
@@ -108,4 +164,37 @@ include '../includes/header_it.php';
             </aside>
           </div>
         </section>
+
+<!-- STRUTTURA DEL MODALE NASCOSTO -->
+<div id="successModal" class="modal-overlay">
+  <div class="modal-box">
+    <div class="modal-icon">📩</div>
+    <h3 class="modal-title">Messaggio Inviato!</h3>
+    <p class="modal-text">
+        Grazie per averci contattato.<br>
+        Abbiamo ricevuto la tua richiesta.<br>
+        Ti risponderemo al più presto.
+    </p>
+    <button class="btn btn-primary" onclick="closeModal()">Chiudi</button>
+  </div>
+</div>
+
+<!-- SCRIPT PER APRIRE/CHIUDERE IL MODALE -->
+<script>
+    function openModal() {
+        document.getElementById('successModal').style.display = 'flex';
+    }
+
+    function closeModal() {
+        document.getElementById('successModal').style.display = 'none';
+        // Ricarica la pagina pulita per svuotare il form
+        window.location.href = window.location.href; 
+    }
+
+    // Se PHP dice che l'invio è avvenuto ($show_success_modal è true), apri il modale
+    <?php if($show_success_modal): ?>
+        openModal();
+    <?php endif; ?>
+</script>
+
 <?php include '../includes/footer_it.php'; ?>
