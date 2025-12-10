@@ -6,87 +6,83 @@ $page = "careers";    // Questo farà illuminare "Careers" nel menu
 $show_success_modal = false;
 $messaggio_feedback = ""; // Lo usiamo ancora per gli errori (es. file troppo grande)
 
-// --- LOGICA DI INVIO ---
+// --- CONFIGURAZIONE RECAPTCHA ---
+// INCOLLA QUI LA TUA "CHIAVE SEGRETA" (SECRET KEY)
+$recaptcha_secret = "6LejfScsAAAAAL9ve-eqzDJGkZufK5Lfpz5gY04D";
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     
-    // 1. Raccogliamo i dati
-    $nome = htmlspecialchars(trim($_POST['nome']));
-    $email = filter_var(trim($_POST['email']), FILTER_SANITIZE_EMAIL);
-    $ruolo = htmlspecialchars(trim($_POST['ruolo']));
-    $area = htmlspecialchars(trim($_POST['area']));
-    $messaggio_utente = htmlspecialchars(trim($_POST['messaggio']));
+    // 1. VERIFICA CAPTCHA
+    $recaptcha_response = $_POST['g-recaptcha-response'];
+    $verify_url = "https://www.google.com/recaptcha/api/siteverify?secret={$recaptcha_secret}&response={$recaptcha_response}";
+    
+    $captcha_verify = file_get_contents($verify_url);
+    $captcha_data = json_decode($captcha_verify);
 
-    $to = "angelo.belfiore.seit@gmail.com"; 
-    $subject = "Nuova candidatura da: " . $nome;
-
-    // 2. Gestione dell'Allegato
-    $allegato_ok = false;
-    $file_content = "";
-    $file_name = "";
-    $file_type = "";
-
-    // Controllo se c'è il file e se non ha errori di caricamento
-    if (isset($_FILES['cv']) && $_FILES['cv']['error'] == UPLOAD_ERR_OK) {
+    if (!$captcha_data->success) {
+         $messaggio_feedback = '<div style="background: #f8d7da; color: #721c24; padding: 15px; margin-bottom: 20px;">Devi cliccare su "Non sono un robot" prima di inviare.</div>';
+    } else {
+        // CAPTCHA OK - PROCEDIAMO
         
-        $file_tmp_name = $_FILES['cv']['tmp_name'];
-        $file_name = basename($_FILES['cv']['name']);
-        $file_size = $_FILES['cv']['size'];
+        $nome = htmlspecialchars(trim($_POST['nome']));
+        $email = filter_var(trim($_POST['email']), FILTER_SANITIZE_EMAIL);
+        $ruolo = htmlspecialchars(trim($_POST['ruolo']));
+        $area = htmlspecialchars(trim($_POST['area']));
+        $messaggio_utente = htmlspecialchars(trim($_POST['messaggio']));
 
-        // Controllo estensione (Solo PDF)
-        $ext = strtolower(pathinfo($file_name, PATHINFO_EXTENSION));
-        
-        if ($ext == 'pdf' && $file_size < 5000000) { // Max 5MB
-            $handle = fopen($file_tmp_name, "rb");
-            $content = fread($handle, $file_size);
-            fclose($handle);
-            $file_content = chunk_split(base64_encode($content));
-            $allegato_ok = true;
-        } else {
-            $messaggio_feedback = '<div style="background: #fff3cd; color: #856404; padding: 15px; margin-bottom: 20px;">Attenzione: Il file deve essere un PDF e minore di 5MB.</div>';
-        }
-    } elseif (isset($_FILES['cv']) && $_FILES['cv']['error'] != UPLOAD_ERR_NO_FILE) {
-         // Errore generico di upload (es. file troppo grande per il server)
-         $messaggio_feedback = '<div style="background: #f8d7da; color: #721c24; padding: 15px; margin-bottom: 20px;">Errore nel caricamento del file. Controlla le dimensioni.</div>';
-    }
+        $to = "angelo.belfiore.seit@gmail.com"; 
+        $subject = "Nuova candidatura da: " . $nome;
 
-    // 3. Costruzione e Invio Mail (Solo se non ci sono errori precedenti)
-    if ($messaggio_feedback == "") {
-        
-        $boundary = md5(time());
+        // Gestione Allegato
+        $allegato_ok = false;
+        $file_content = ""; $file_name = ""; $file_type = "";
 
-        $headers = "From: angelo.belfiore.seit@gmail.com\r\n";
-        $headers .= "Reply-To: $email\r\n";
-        $headers .= "MIME-Version: 1.0\r\n";
-        $headers .= "Content-Type: multipart/mixed; boundary=\"" . $boundary . "\"\r\n";
-
-        // Parte Testo
-        $body = "--" . $boundary . "\r\n";
-        $body .= "Content-Type: text/plain; charset=\"UTF-8\"\r\n";
-        $body .= "Content-Transfer-Encoding: 7bit\r\n\r\n";
-        $body .= "Nuova candidatura ricevuta dal sito.\n\n";
-        $body .= "Nome: $nome\n";
-        $body .= "Email: $email\n";
-        $body .= "Ruolo: $ruolo\n";
-        $body .= "Area: $area\n\n";
-        $body .= "Presentazione:\n$messaggio_utente\n\n";
-        
-        // Parte Allegato
-        if ($allegato_ok) {
-            $body .= "--" . $boundary . "\r\n";
-            $body .= "Content-Type: application/pdf; name=\"" . $file_name . "\"\r\n";
-            $body .= "Content-Disposition: attachment; filename=\"" . $file_name . "\"\r\n";
-            $body .= "Content-Transfer-Encoding: base64\r\n\r\n";
-            $body .= $file_content . "\r\n";
+        if (isset($_FILES['cv']) && $_FILES['cv']['error'] == UPLOAD_ERR_OK) {
+            $file_tmp_name = $_FILES['cv']['tmp_name'];
+            $file_name = basename($_FILES['cv']['name']);
+            $file_size = $_FILES['cv']['size'];
+            $ext = strtolower(pathinfo($file_name, PATHINFO_EXTENSION));
+            
+            if ($ext == 'pdf' && $file_size < 5000000) {
+                $handle = fopen($file_tmp_name, "rb");
+                $content = fread($handle, $file_size);
+                fclose($handle);
+                $file_content = chunk_split(base64_encode($content));
+                $allegato_ok = true;
+            } else {
+                $messaggio_feedback = '<div style="background: #fff3cd; color: #856404; padding: 15px; margin-bottom: 20px;">Il file deve essere PDF e max 5MB.</div>';
+            }
+        } elseif (isset($_FILES['cv']) && $_FILES['cv']['error'] != UPLOAD_ERR_NO_FILE) {
+             $messaggio_feedback = '<div style="background: #f8d7da; color: #721c24; padding: 15px; margin-bottom: 20px;">Errore caricamento file.</div>';
         }
 
-        $body .= "--" . $boundary . "--";
+        // Costruzione Mail Multipart
+        if ($messaggio_feedback == "") {
+            $boundary = md5(time());
+            $headers = "From: angelo.belfiore.seit@gmail.com\r\n";
+            $headers .= "Reply-To: $email\r\n";
+            $headers .= "MIME-Version: 1.0\r\n";
+            $headers .= "Content-Type: multipart/mixed; boundary=\"" . $boundary . "\"\r\n";
 
-        // Invio
-        if (mail($to, $subject, $body, $headers)) {
-            // SUCCESS: Attiviamo il flag per mostrare il popup
-            $show_success_modal = true;
-        } else {
-            $messaggio_feedback = '<div style="background: #f8d7da; color: #721c24; padding: 15px; border-radius: 5px; margin-bottom: 20px;">Errore tecnico nell\'invio della mail.</div>';
+            $body = "--" . $boundary . "\r\n";
+            $body .= "Content-Type: text/plain; charset=\"UTF-8\"\r\n";
+            $body .= "Content-Transfer-Encoding: 7bit\r\n\r\n";
+            $body .= "Nuova candidatura ricevuta.\n\nNome: $nome\nEmail: $email\nRuolo: $ruolo\nArea: $area\n\nMessaggio:\n$messaggio_utente\n\n";
+            
+            if ($allegato_ok) {
+                $body .= "--" . $boundary . "\r\n";
+                $body .= "Content-Type: application/pdf; name=\"" . $file_name . "\"\r\n";
+                $body .= "Content-Disposition: attachment; filename=\"" . $file_name . "\"\r\n";
+                $body .= "Content-Transfer-Encoding: base64\r\n\r\n";
+                $body .= $file_content . "\r\n";
+            }
+            $body .= "--" . $boundary . "--";
+
+            if (mail($to, $subject, $body, $headers)) {
+                $show_success_modal = true;
+            } else {
+                $messaggio_feedback = '<div style="background: #f8d7da; color: #721c24; padding: 15px; margin-bottom: 20px;">Errore tecnico invio.</div>';
+            }
         }
     }
 }
@@ -94,56 +90,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 include '../includes/header_en.php'; // Notare ../ prima di includes
 ?>
 
-<!-- CSS PER IL POPUP (MODALE) -->
+<!-- SCRIPT GOOGLE -->
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+
 <style>
-  .modal-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.7);
-    display: none; /* Nascosto di default */
-    justify-content: center;
-    align-items: center;
-    z-index: 10000;
-    backdrop-filter: blur(5px);
-  }
-
-  .modal-box {
-    background: #111827; /* Colore scuro coerente col sito */
-    border: 1px solid rgba(94, 170, 222, 0.5); /* Bordo azzurro */
-    padding: 2rem;
-    border-radius: 16px;
-    text-align: center;
-    max-width: 400px;
-    width: 90%;
-    box-shadow: 0 20px 60px rgba(0,0,0,0.5);
-    animation: popUp 0.3s ease-out forwards;
-  }
-
-  .modal-icon {
-    font-size: 3rem;
-    margin-bottom: 1rem;
-    display: block;
-  }
-
-  .modal-title {
-    color: #f9fafb;
-    font-size: 1.5rem;
-    margin-bottom: 0.5rem;
-  }
-
-  .modal-text {
-    color: #9ca3af;
-    margin-bottom: 1.5rem;
-  }
-
-  @keyframes popUp {
-    from { transform: scale(0.8); opacity: 0; }
-    to { transform: scale(1); opacity: 1; }
-  }
+  .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.7); display: none; justify-content: center; align-items: center; z-index: 10000; backdrop-filter: blur(5px); }
+  .modal-box { background: #111827; border: 1px solid rgba(94, 170, 222, 0.5); padding: 2rem; border-radius: 16px; text-align: center; max-width: 400px; width: 90%; box-shadow: 0 20px 60px rgba(0,0,0,0.5); animation: popUp 0.3s ease-out forwards; }
+  .modal-icon { font-size: 3rem; margin-bottom: 1rem; display: block; }
+  .modal-title { color: #f9fafb; font-size: 1.5rem; margin-bottom: 0.5rem; }
+  .modal-text { color: #9ca3af; margin-bottom: 1.5rem; }
+  @keyframes popUp { from { transform: scale(0.8); opacity: 0; } to { transform: scale(1); opacity: 1; } }
 </style>
+
         <section class="inner-hero fade-in">
           <div class="breadcrumb"><a href="../index_en.php">Home</a> / Careers</div>
           <h1 class="inner-title">Careers</h1>
@@ -255,6 +213,12 @@ include '../includes/header_en.php'; // Notare ../ prima di includes
             <div class="form-group">
               <label for="cv">Upload your CV (PDF, max 5MB)</label>
               <input type="file" id="cv" name="cv" accept=".pdf" required />
+            </div>
+
+            <!-- RECAPTCHA QUI -->
+            <div class="form-group" style="margin-bottom: 1.5rem;">
+                <!-- INCOLLA QUI LA TUA "CHIAVE DEL SITO" (SITE KEY) -->
+                <div class="g-recaptcha" data-sitekey="6LejfScsAAAAAGyn4t23--vqszjPly9Xj9BHwwny"></div>
             </div>
 
             <button type="submit" class="btn btn-primary">

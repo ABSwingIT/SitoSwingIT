@@ -6,98 +6,80 @@ $page = "kontakt";    // Questo farà illuminare "Kontakt" nel menu
 $show_success_modal = false;
 $messaggio_feedback = ""; 
 
-// Se il modulo è stato inviato (metodo POST)
+// --- CONFIGURAZIONE RECAPTCHA ---
+// INCOLLA QUI LA TUA "CHIAVE SEGRETA" (SECRET KEY) PRESA DA GOOGLE
+$recaptcha_secret = "6LejfScsAAAAAL9ve-eqzDJGkZufK5Lfpz5gY04D";
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     
-    // 1. Raccogliamo e puliamo i dati
-    $nome = htmlspecialchars(trim($_POST['nome']));
-    $email = filter_var(trim($_POST['email']), FILTER_SANITIZE_EMAIL);
-    $oggetto_form = htmlspecialchars(trim($_POST['oggetto']));
-    $messaggio = htmlspecialchars(trim($_POST['messaggio']));
+    // 1. VERIFICA CAPTCHA PRIMA DI TUTTO
+    $recaptcha_response = $_POST['g-recaptcha-response'];
+    $verify_url = "https://www.google.com/recaptcha/api/siteverify?secret={$recaptcha_secret}&response={$recaptcha_response}";
+    
+    // Chiediamo a Google se l'utente è umano
+    $captcha_verify = file_get_contents($verify_url);
+    $captcha_data = json_decode($captcha_verify);
 
-    // 2. Impostiamo il destinatario
-    $to = "angelo.belfiore.seit@gmail.com";
-
-    // 3. Prepariamo l'oggetto della mail
-    $subject = "Nuovo messaggio dal sito Swing:IT: " . $oggetto_form;
-
-    // 4. Costruiamo il corpo della mail
-    $body = "Hai ricevuto un nuovo messaggio dal modulo contatti.\n\n";
-    $body .= "Nome: " . $nome . "\n";
-    $body .= "Email: " . $email . "\n";
-    $body .= "Oggetto: " . $oggetto_form . "\n\n";
-    $body .= "Messaggio:\n" . $messaggio . "\n";
-
-    // 5. Intestazioni (Headers)
-    $headers = "From: noreply@softwareengineering.it\r\n"; 
-    $headers .= "Reply-To: $email\r\n";
-    $headers .= "X-Mailer: PHP/" . phpversion();
-
-    // 6. Invio effettivo
-    if(!empty($nome) && !empty($email) && !empty($messaggio)){
-        if (mail($to, $subject, $body, $headers)) {
-            // SUCCESS: Attiviamo il flag per mostrare il popup invece del testo semplice
-            $show_success_modal = true;
-        } else {
-            $messaggio_feedback = '<div style="background: #f8d7da; color: #721c24; padding: 15px; border-radius: 5px; margin-bottom: 20px;">Errore nell\'invio del messaggio. Riprova più tardi.</div>';
-        }
+    if (!$captcha_data->success) {
+        // Se il captcha fallisce o non è stato cliccato
+        $messaggio_feedback = '<div style="background: #f8d7da; color: #721c24; padding: 15px; border-radius: 5px; margin-bottom: 20px;">Per favore conferma di non essere un robot cliccando sul CAPTCHA.</div>';
     } else {
-        $messaggio_feedback = '<div style="background: #fff3cd; color: #856404; padding: 15px; border-radius: 5px; margin-bottom: 20px;">Per favore compila tutti i campi obbligatori.</div>';
+        // CAPTCHA OK -> PROCEDIAMO CON L'INVIO MAIL
+        
+        // Pulizia dati
+        $nome = htmlspecialchars(trim($_POST['nome']));
+        $email = filter_var(trim($_POST['email']), FILTER_SANITIZE_EMAIL);
+        $oggetto_form = htmlspecialchars(trim($_POST['oggetto']));
+        $messaggio = htmlspecialchars(trim($_POST['messaggio']));
+
+        $to = "angelo.belfiore.seit@gmail.com";
+        $subject = "Nuovo messaggio dal sito Swing:IT: " . $oggetto_form;
+
+        $body = "Hai ricevuto un nuovo messaggio dal modulo contatti.\n\n";
+        $body .= "Nome: " . $nome . "\n";
+        $body .= "Email: " . $email . "\n";
+        $body .= "Oggetto: " . $oggetto_form . "\n\n";
+        $body .= "Messaggio:\n" . $messaggio . "\n";
+
+        $headers = "From: noreply@softwareengineering.it\r\n"; 
+        $headers .= "Reply-To: $email\r\n";
+        $headers .= "X-Mailer: PHP/" . phpversion();
+
+        if(!empty($nome) && !empty($email) && !empty($messaggio)){
+            if (mail($to, $subject, $body, $headers)) {
+                $show_success_modal = true;
+            } else {
+                $messaggio_feedback = '<div style="background: #f8d7da; color: #721c24; padding: 15px; margin-bottom: 20px;">Errore tecnico nell\'invio. Riprova.</div>';
+            }
+        } else {
+            $messaggio_feedback = '<div style="background: #fff3cd; color: #856404; padding: 15px; margin-bottom: 20px;">Compila tutti i campi obbligatori.</div>';
+        }
     }
 }
 
 include '../includes/header_de.php'; // Notare ../ prima di includes
 ?>
 
-<!-- CSS PER IL POPUP (MODALE) -->
-<style>
-  .modal-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.7);
-    display: none; /* Nascosto di default */
-    justify-content: center;
-    align-items: center;
-    z-index: 10000;
-    backdrop-filter: blur(5px);
-  }
+<!-- SCRIPT DI GOOGLE NECESSARIO -->
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
 
+<style>
+  /* Stile Popup */
+  .modal-overlay {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.7); display: none; 
+    justify-content: center; align-items: center; z-index: 10000; backdrop-filter: blur(5px);
+  }
   .modal-box {
-    background: #111827; /* Colore scuro coerente col sito */
-    border: 1px solid rgba(94, 170, 222, 0.5); /* Bordo azzurro */
-    padding: 2rem;
-    border-radius: 16px;
-    text-align: center;
-    max-width: 400px;
-    width: 90%;
-    box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+    background: #111827; border: 1px solid rgba(94, 170, 222, 0.5);
+    padding: 2rem; border-radius: 16px; text-align: center;
+    max-width: 400px; width: 90%; box-shadow: 0 20px 60px rgba(0,0,0,0.5);
     animation: popUp 0.3s ease-out forwards;
   }
-
-  .modal-icon {
-    font-size: 3rem;
-    margin-bottom: 1rem;
-    display: block;
-  }
-
-  .modal-title {
-    color: #f9fafb;
-    font-size: 1.5rem;
-    margin-bottom: 0.5rem;
-  }
-
-  .modal-text {
-    color: #9ca3af;
-    margin-bottom: 1.5rem;
-  }
-
-  @keyframes popUp {
-    from { transform: scale(0.8); opacity: 0; }
-    to { transform: scale(1); opacity: 1; }
-  }
+  .modal-icon { font-size: 3rem; margin-bottom: 1rem; display: block; }
+  .modal-title { color: #f9fafb; font-size: 1.5rem; margin-bottom: 0.5rem; }
+  .modal-text { color: #9ca3af; margin-bottom: 1.5rem; }
+  @keyframes popUp { from { transform: scale(0.8); opacity: 0; } to { transform: scale(1); opacity: 1; } }
 </style>
 
         <section class="inner-hero fade-in">
@@ -132,6 +114,12 @@ include '../includes/header_de.php'; // Notare ../ prima di includes
                 <div class="form-group">
                   <label for="messaggio">Nachricht</label>
                   <textarea id="messaggio" name="messaggio" required></textarea>
+                </div>
+
+                <!-- QUI IL BLOCCO RECAPTCHA -->
+                <div class="form-group" style="margin-bottom: 1.5rem;">
+                    <!-- INCOLLA QUI LA TUA "CHIAVE DEL SITO" (SITE KEY) -->
+                    <div class="g-recaptcha" data-sitekey="6LejfScsAAAAAGyn4t23--vqszjPly9Xj9BHwwny"></div>
                 </div>
 
                 <button type="submit" class="btn btn-primary">
