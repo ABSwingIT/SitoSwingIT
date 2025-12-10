@@ -1,7 +1,53 @@
 <?php 
-$path = "../";      // Siamo dentro una cartella, dobbiamo salire di un livello per trovare css e images
-$page = "contatti";    // Questo farà illuminare "Contatti" nel menu
-include '../includes/header_it.php'; // Notare ../ prima di includes
+$path = "../";
+$page = "contatti";
+
+// --- LOGICA DI INVIO MAIL ---
+$messaggio_feedback = ""; // Variabile per mostrare esito all'utente
+
+// Se il modulo è stato inviato (metodo POST)
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    
+    // 1. Raccogliamo e puliamo i dati (Sanitizzazione)
+    // htmlspecialchars serve a impedire che qualcuno inserisca codice malevolo
+    $nome = htmlspecialchars(trim($_POST['nome']));
+    $email = filter_var(trim($_POST['email']), FILTER_SANITIZE_EMAIL);
+    $oggetto_form = htmlspecialchars(trim($_POST['oggetto']));
+    $messaggio = htmlspecialchars(trim($_POST['messaggio']));
+
+    // 2. Impostiamo il destinatario
+    $to = "angelo.belfiore.seit@gmail.com";
+
+    // 3. Prepariamo l'oggetto della mail
+    $subject = "Nuovo messaggio dal sito Swing:IT: " . $oggetto_form;
+
+    // 4. Costruiamo il corpo della mail
+    $body = "Hai ricevuto un nuovo messaggio dal modulo contatti.\n\n";
+    $body .= "Nome: " . $nome . "\n";
+    $body .= "Email: " . $email . "\n";
+    $body .= "Oggetto: " . $oggetto_form . "\n\n";
+    $body .= "Messaggio:\n" . $messaggio . "\n";
+
+    // 5. Intestazioni (Headers)
+    // Importante: Reply-To permette di rispondere direttamente al mittente cliccando "Rispondi"
+    $headers = "From: noreply@softwareengineering.it\r\n"; // Meglio usare una mail del dominio
+    $headers .= "Reply-To: $email\r\n";
+    $headers .= "X-Mailer: PHP/" . phpversion();
+
+    // 6. Invio effettivo
+    // Controllo se i campi obbligatori sono pieni
+    if(!empty($nome) && !empty($email) && !empty($messaggio)){
+        if (mail($to, $subject, $body, $headers)) {
+            $messaggio_feedback = '<div style="background: #d4edda; color: #155724; padding: 15px; border-radius: 5px; margin-bottom: 20px;">Messaggio inviato con successo! Ti risponderemo presto.</div>';
+        } else {
+            $messaggio_feedback = '<div style="background: #f8d7da; color: #721c24; padding: 15px; border-radius: 5px; margin-bottom: 20px;">Errore nell\'invio del messaggio. Riprova più tardi (Nota: su Localhost potrebbe non funzionare).</div>';
+        }
+    } else {
+        $messaggio_feedback = '<div style="background: #fff3cd; color: #856404; padding: 15px; border-radius: 5px; margin-bottom: 20px;">Per favore compila tutti i campi obbligatori.</div>';
+    }
+}
+
+include '../includes/header_it.php'; 
 ?>
         <section class="inner-hero fade-in">
           <div class="breadcrumb"><a href="../index.php">Home</a> / Contatti</div>
