@@ -1,0 +1,401 @@
+<?php 
+$path = "../";      // Siamo dentro una cartella, dobbiamo salire di un livello per trovare css e images
+$page = "Tecnologie";    // Questo farà illuminare "Tecnologie" nel menu
+include '../includes/header_it.php'; // Notare ../ prima di includes
+?>
+        <section class="inner-hero fade-in">
+          <div class="breadcrumb"><a href="../index.php">Home</a> / Tecnologie</div>
+          <h1 class="inner-title">Tecnologie</h1>
+          <p class="inner-subtitle">
+            Stack tecnologico e competenze che permettono di integrare XR, AI,
+            3D, Big Data e cloud in soluzioni coerenti e scalabili.
+          </p>
+        </section>
+
+        <section class="content">
+            <div>
+              <h2>Artificial Intelligence e Data</h2>
+              <p style="text-align: justify;">Soluzioni avanzate di AI, modelli predittivi, analisi di grandi volumi di dati e tecniche di machine learning applicate ai settori medicale, industriale e agricolo.</p>
+              <div class="grid-4">
+              <article class="card">
+                <div><p style="text-align: center;"><img class="tech-img" src="../images/MachineLearning.jpg" alt="MachineLearning" width="80px"/></p></div>
+                <h3>Machine Learning</h3>
+              <p style="text-align: justify;">
+                Tecniche di apprendimento supervisionato e non supervisionato per classificazione, regressione e sistemi predittivi.
+              </p>
+              </article>
+
+              <article class="card">
+                <div><p style="text-align: center;"><img class="tech-img" src="../images/IntelligenzaArtificiale.jpg" alt="AI" width="80px"/></p></div>
+              <h3>Intelligenza Artificiale</h3>
+              <p style="text-align: justify;">
+                Soluzioni basate su modelli neurali e algoritmi evoluti per automazione, decision support e analisi complesse.
+              </p>
+              </article>
+
+              <article class="card">
+                <div><p style="text-align: center;"><img class="tech-img" src="../images/BigData.jpg" alt="BigData" width="80px"/></p></div>
+              <h3>Big Data</h3>
+              <p style="text-align: justify;">
+                Gestione, analisi e modellazione di dataset ad alta dimensionalità provenienti da fonti eterogenee.
+              </p>
+              </article>
+
+              <article class="card">
+                <div><p style="text-align: center;"><img class="tech-img" src="../images/DataMining.jpg" alt="DataMining" width="80px"/></p></div>
+              <h3>Data Mining</h3>
+              <p style="text-align: justify;">
+                Estrazione di pattern, correlazioni e insight significativi da grandi volumi di dati.
+              </p>
+              </article>
+
+              <article class="card">
+                <div><p style="text-align: center;"><img class="tech-img" src="../images/TENSORFLOW.jpg" alt="TENSORFLOW" width="80px"/></p></div>
+              <h3>TensorFlow</h3>
+                <p style="text-align: justify;">
+                Framework avanzato per deep learning e reti neurali complesse, ottimale per modelli predittivi e LSTM.
+              </p>
+              <a href="https://www.tensorflow.org/" target="_blank" rel="noopener" class="link-inline">Scopri di più</a>
+              </article>
+
+              <article class="card">
+                <div><p style="text-align: center;"><img class="tech-img" src="../images/PYTORCH.jpg" alt="PYTORCH" width="80px"/></p></div>
+              <h3>PyTorch</h3>
+              <p style="text-align: justify;">
+                Framework dinamico per reti neurali e ricerca sperimentale, molto usato in modelli di previsione e AI avanzata.
+              </p>
+              <a href="https://pytorch.org/" target="_blank" rel="noopener" class="link-inline">Scopri di più</a>
+              </article>
+
+              <article class="card">
+                <div><p style="text-align: center;"><img class="tech-img" src="../images/KERAS.jpg" alt="KERAS" width="80px"/></p></div>
+              <h3>Keras</h3>
+              <p style="text-align: justify;">
+                Libreria ad alto livello per prototipazione rapida di modelli deep learning.
+              </p>
+              <a href="https://https://keras.io/" target="_blank" rel="noopener" class="link-inline">Scopri di più</a>
+              </article>
+
+              <article class="card">
+                <div><p style="text-align: center;"><img class="tech-img" src="../images/NUMPY.jpg" alt="NUMPY" width="80px"/></p></div>
+              <h3>NumPy</h3>
+              <p style="text-align: justify;">
+                Libreria per il calcolo numerico ad alte prestazioni, base per ogni pipeline di data science.
+              </p>
+              <a href="https://numpy.org/" target="_blank" rel="noopener" class="link-inline">Scopri di più</a>
+              </article>
+
+              <article class="card">
+                <div><p style="text-align: center;"><img class="tech-img" src="../images/PANDAS.jpg" alt="PANDAS" width="80px"/></p></div>
+              <h3>Pandas</h3>
+              <p style="text-align: justify;">
+                Strumento essenziale per data analysis, data cleaning e manipolazione di dataset complessi.
+              </p>
+              <a href="https://pandas.pydata.org/" target="_blank" rel="noopener" class="link-inline">Scopri di più</a>
+              </article>
+
+              <article class="card">
+                <div><p style="text-align: center;"><img class="tech-img" src="../images/SCIKIT.jpg" alt="SCIKIT" width="80px"/></p></div>
+              <h3>Scikit-Learn</h3>
+              <p style="text-align: justify;">
+                Libreria per algoritmi di machine learning classici: regressioni, clustering, classificazioni e pipeline di analisi. 
+              </p>
+              <a href="https://scikit-learn.org/stable/" target="_blank" rel="noopener" class="link-inline">Scopri di più</a>
+              </article>
+
+              <article class="card">
+                <div><p style="text-align: center;"><img class="tech-img" src="../images/STATSMODELS.jpg" alt="STATSMODELS" width="80px"/></p></div>
+              <h3>Statsmodels</h3>
+              <p style="text-align: justify;">
+                Modelli statistici avanzati, regressioni lineari e temporali, analisi mediche e scientifiche. 
+              </p>
+              <a href="https://www.statsmodels.org/stable/index.php" target="_blank" rel="noopener" class="link-inline">Scopri di più</a>
+              </article>
+
+              <article class="card">
+                <div><p style="text-align: center;"><img class="tech-img" src="../images/PROPHET.jpg" alt="PROPHET" width="80px"/></p></div>
+              <h3>Prophet</h3>
+              <p style="text-align: justify;">
+                Framework per modelli previsionali su serie temporali (medicali, ambientali, agricoli).
+              </p>
+              <a href="https://facebook.github.io/prophet/" target="_blank" rel="noopener" class="link-inline">Scopri di più</a>
+              </article>
+
+              </div>
+              <h2>XR e Real-time 3D</h2>
+              <p style="text-align: justify;">Sviluppo di esperienze immersive e simulazioni 3D ad alta fedeltà per training, industria e presentazioni interattive.</p>
+              <div class="grid-4">
+              <article class="card">
+                <div><p style="text-align: center;"><img class="tech-img" src="../images/RealtaAumentata.jpg" alt="AR" width="80px"/></p></div>
+              <h3>Realtà Aumentata</h3>
+              <p style="text-align: justify;">
+                Integrazione di contenuti digitali nel mondo reale per applicazioni industriali e interattive.
+              </p>
+              </article>
+
+              <article class="card">
+                <div><p style="text-align: center;"><img class="tech-img" src="../images/RealtàVirtuale.jpg" alt="VR" width="80px"/></p></div>
+              <H3>Realtà Virtuale</H3>
+              <p style="text-align: justify;">
+                Ambienti immersivi 3D per simulazione, training e visualizzazione avanzata.
+              </p>
+              </article>
+
+              <article class="card">
+                <div><p style="text-align: center;"><img class="tech-img" src="../images/RealtàEstesa.jpg" alt="XR" width="80px"/></p></div>
+              <H3>Realtà Estesa</H3>
+              <p style="text-align: justify;">
+                Soluzioni che combinano AR, VR e MR in esperienze avanzate e multi-dispositivo.
+              </p>
+              </article>
+
+              <article class="card">
+                <div><p style="text-align: center;"><img class="tech-img" src="../images/UNREAL.jpg" alt="UNREAL" width="80px"/></p></div>
+              <h3>Unreal Engine</h3>
+              <p style="text-align: justify;">
+                Motore real-time di fascia alta per visualizzazioni fotorealistiche e simulazioni complesse.
+              </p>
+              <a href="https://www.unrealengine.com/en-US" target="_blank" rel="noopener" class="link-inline">Scopri di più</a>
+              </article>
+
+              <article class="card">
+                <div><p style="text-align: center;"><img class="tech-img" src="../images/UNITY.jpg" alt="UNITY" width="80px"/></p></div>
+              <h3>Unity Engine</h3>
+              <p style="text-align: justify;">
+                Motore multipiattaforma per esperienze immersive, serious games e applicazioni interattive. 
+              </p>
+              <a href="https://unity.com/" target="_blank" rel="noopener" class="link-inline">Scopri di più</a>
+              </article>
+
+              <article class="card">
+                <div><p style="text-align: center;"><img class="tech-img" src="../images/BLENDER.jpg" alt="BLENDER" width="80px"/></p></div>
+              <h3>Blender</h3>
+              <p style="text-align: justify;">
+                Modellazione, animazione e rendering 3D open-source per pipeline di produzione digitale. 
+              </p>
+              <a href="https://www.blender.org/" target="_blank" rel="noopener" class="link-inline">Scopri di più</a>
+              </article>
+
+              <article class="card">
+                <div><p style="text-align: center;"><img class="tech-img" src="../images/TECHVIZ.jpg" alt="TECHVIZ" width="80px"/></p></div>
+              <h3>TechViz</h3>
+              <p style="text-align: justify;">
+                Soluzioni per visualizzazione immersiva e integrazione CAD in ambienti VR.
+              </p>
+              <a href="https://www.techviz.net/" target="_blank" rel="noopener" class="link-inline">Scopri di più</a>
+              </article>
+
+              </div>
+              <h2>Embedded, IoT ed Edge</h2>
+              <p style="text-align: justify;">Progettazione di sistemi embedded, sensoristica intelligente e architetture edge per applicazioni industriali e smart environments.</p>
+              <div class="grid-4">
+              <article class="card">
+                <div><p style="text-align: center;"><img class="tech-img" src="../images/ESP32.jpg" alt="ESP32" width="80px"/></p></div>
+              <H3>ESP32</H3>
+              <p style="text-align: justify;">
+                Microcontrollore avanzato per applicazioni IoT con WiFi/Bluetooth integrati.
+              </p>
+              </article>
+
+              <article class="card">
+                <div><p style="text-align: center;"><img class="tech-img" src="../images/ARDUINO.jpg" alt="ARDUINO" width="80px"/></p></div>
+              <h3>Arduino</h3>
+              <p style="text-align: justify;">
+                Ecosistema hardware open per prototipazione rapida e dispositivi embedded.
+              </p>
+              <a href="https://www.arduino.cc/" target="_blank" rel="noopener" class="link-inline">Scopri di più</a>
+              </article>
+
+              <article class="card">
+                <div><p style="text-align: center;"><img class="tech-img" src="../images/RASPBERRY.jpg" alt="RASPBERRY" width="80px"/></p></div>
+              <h3>Raspberry PI</h3>
+              <p style="text-align: justify;">
+                Mini-computer versatile per automazione, IoT ed edge computing.
+              </p>
+              <a href="https://www.raspberrypi.com/" target="_blank" rel="noopener" class="link-inline">Scopri di più</a>
+              </article>
+
+              <article class="card">
+                <div><p style="text-align: center;"><img class="tech-img" src="../images/STM32.jpg" alt="STM32" width="80px"/></p></div>
+              <H3>STM32</H3>
+              <p style="text-align: justify;">
+                Microcontrollori ad alte prestazioni per applicazioni embedded industriali.
+              </p>
+              </article>
+
+              <article class="card">
+                <div><p style="text-align: center;"><img class="tech-img" src="../images/IoT.jpg" alt="IoT" width="80px"/></p></div>
+              <H3>IoT</H3>
+              <p style="text-align: justify;">
+                Progettazione di sistemi connessi e raccolta dati da dispositivi distribuiti.
+              </p>
+              </article>
+
+              <article class="card">
+                <div><p style="text-align: center;"><img class="tech-img" src="../images/Edge Computing.jpg" alt="EdgeComputing" width="80px"/></p></div>
+              <H3>Edge Computing</H3>
+              <p style="text-align: justify;">
+                Elaborazione dei dati direttamente in prossimità della sorgente per latenze ridotte.
+              </p>
+              </article>
+
+              </div>
+              <h2>Web e Backend Development</h2>
+              <p style="text-align: justify;">Soluzioni web moderne, frontend reattivi e backend scalabili basati su tecnologie di ultima generazione.</p>
+              <div class="grid-4">
+              <article class="card">
+                <div><p style="text-align: center;"><img class="tech-img" src="../images/REACT.jpg" alt="REACT" width="80px"/></p></div>
+              <h3>React</h3>
+              <p style="text-align: justify;">
+                Stack moderno per frontend ad alte prestazioni, sviluppo rapido e architetture component-based.
+              </p>
+              <a href="https://react.dev/" target="_blank" rel="noopener" class="link-inline">Scopri di più</a>
+              </article>
+
+              <article class="card">
+                <div><p style="text-align: center;"><img class="tech-img" src="../images/WORDPRESS.jpg" alt="WORDPRESS" width="80px"/></p></div>
+              <h3>WordPress</h3>
+              <p style="text-align: justify;">
+                CMS flessibile per siti, portali e soluzioni editoriali.
+              </p>
+              <a href="https://wordpress.com/it/" target="_blank" rel="noopener" class="link-inline">Scopri di più</a>
+              </article>
+
+              <article class="card">
+                <div><p style="text-align: center;"><img class="tech-img" src="../images/OPENLAYERS.jpg" alt="OPENLAYERS" width="80px"/></p></div>
+              <h3>OpenLayers</h3>
+              <p style="text-align: justify;">
+                Libreria per applicazioni web GIS e mappe interattive.
+              </p>
+              <a href="https://openlayers.org/" target="_blank" rel="noopener" class="link-inline">Scopri di più</a>
+              </article>
+
+              <article class="card">
+                <div><p style="text-align: center;"><img class="tech-img" src="../images/PHP.jpg" alt="PHP" width="80px"/></p></div>
+              <h3>PHP</h3>
+              <p style="text-align: justify;">
+                Versione moderna del linguaggio PHP per backend performanti e sicuri.
+              </p>
+              <a href="https://www.php.net/" target="_blank" rel="noopener" class="link-inline">Scopri di più</a>
+              </article>
+
+              <article class="card">
+                <div><p style="text-align: center;"><img class="tech-img" src="../images/NODEJS.jpg" alt="NODEJS" width="80px"/></p></div>
+              <h3>Node.js</h3>
+              <p style="text-align: justify;">
+                Ambiente JavaScript server-side per applicazioni moderne e scalabili.
+              </p>
+              <a href="https://nodejs.org/en" target="_blank" rel="noopener" class="link-inline">Scopri di più</a>
+              </article>
+
+              <article class="card">
+                <div><p style="text-align: center;"><img class="tech-img" src="../images/PYTHON.jpg" alt="PYTHON" width="80px"/></p></div>
+              <h3>Python</h3>
+              <p style="text-align: justify;">
+                Linguaggio elettivo per AI, data analysis e automazione. 
+              </p>
+              <a href="https://www.python.org/" target="_blank" rel="noopener" class="link-inline">Scopri di più</a>
+              </article>
+
+              <article class="card">
+                <div><p style="text-align: center;"><img class="tech-img" src="../images/TYPESCRIPT.jpg" alt="TYPESCRIPT" width="80px"/></p></div>
+              <h3>Typescript</h3>
+              <p style="text-align: justify;">
+                Sviluppo backend tipizzato con integrazione ORM per database relazionali.
+              </p>
+              <a href="https://www.typescriptlang.org/" target="_blank" rel="noopener" class="link-inline">Scopri di più</a>
+              </article>
+
+              <article class="card">
+                <div><p style="text-align: center;"><img class="tech-img" src="../images/C.jpg" alt="C" width="80px"/></p></div>
+              <h3>C#</h3>
+              <p style="text-align: justify;">
+                Framework enterprise per applicazioni robuste e scalabili.
+              </p>
+              <a href="https://dotnet.microsoft.com/it-it/languages/csharp" target="_blank" rel="noopener" class="link-inline">Scopri di più</a>
+              </article>
+
+              <article class="card">
+                <div><p style="text-align: center;"><img class="tech-img" src="../images/RESTFUL.jpg" alt="RESTFUL" width="80px"/></p></div>
+              <h3>RESTFul</h3>
+              <p style="text-align: justify;">
+                Architettura moderna per API interoperabili e scalabili.
+              </p>
+              </article>
+
+              <article class="card">
+                <div><p style="text-align: center;"><img class="tech-img" src="../images/MARIADB.jpg" alt="MARIADB" width="80px"/></p></div>
+              <h3>MariaDB</h3>
+              <p style="text-align: justify;">
+                Database relazionale open-source ad alte prestazioni.
+              </p>
+              <a href="https://mariadb.org/" target="_blank" rel="noopener" class="link-inline">Scopri di più</a>
+              </article>
+
+              </div>
+              <h2>Data Platforms e NoSQL</h2>
+              <p style="text-align: justify;">Gestione di dati complessi, database ad alte prestazioni e sistemi ottimizzati per analisi real-time e time-series.</p>
+              <div class="grid-4">
+              <article class="card">
+                <div><p style="text-align: center;"><img class="tech-img" src="../images/MONGODB.jpg" alt="MONGODB" width="80px"/></p></div>
+              <h3>MongoDB</h3>
+              <p style="text-align: justify;">
+                Database documentale flessibile per applicazioni distribuite e scalabili.
+              </p>
+              <a href="https://www.mongodb.com/" target="_blank" rel="noopener" class="link-inline">Scopri di più</a>
+              </article>
+
+              <article class="card">
+                <div><p style="text-align: center;"><img class="tech-img" src="../images/INFLUXDB.jpg" alt="INFLUXDB" width="80px"/></p></div>
+              <h3>InfluxDB</h3>
+              <p style="text-align: justify;">
+                Database time-series per IoT, monitoraggio e analisi temporali.
+              </p>
+              <a href="https://www.influxdata.com/" target="_blank" rel="noopener" class="link-inline">Scopri di più</a>
+              </article>
+
+              </div>
+              <h2>Blockchain e WEB3</h2>
+              <p style="text-align: justify;">Iniziative su blockchain per sicurezza, tracciabilità e automazione decentralizzata.</p>
+              <div class="grid-4">
+              <article class="card">
+                <div><p style="text-align: center;"><img class="tech-img" src="../images/BLOCKCHAIN.jpg" alt="BLOCKCHAIN" width="80px"/></p></div>
+              <h3>Blockchain</h3>
+              <p style="text-align: justify;">
+                Architetture distribuite per sicurezza, tracciabilità e automazione.
+              </p>
+              <a href="https://www.blockchain.com/" target="_blank" rel="noopener" class="link-inline">Scopri di più</a>
+              </article>
+
+              <article class="card">
+                <div><p style="text-align: center;"><img class="tech-img" src="../images/BITCOIN.jpg" alt="BITCOIN" width="80px"/></p></div>
+              <h3>Bitcoin</h3>
+              <p style="text-align: justify;">
+                Tecnologia e protocollo di riferimento per blockchain pubbliche.
+              </p>
+              </article>
+
+              <article class="card">
+                <div><p style="text-align: center;"><img class="tech-img" src="../images/ETHEREUM.jpg" alt="ETHEREUM" width="80px"/></p></div>
+              <h3>Ethereum</h3>
+              <p style="text-align: justify;">
+                Piattaforma per smart contract e applicazioni decentralizzate.
+              </p>
+              </article>
+
+              </div>
+              <h2>Mobile Development</h2>
+              <p style="text-align: justify;">Applicazioni Android integrate con sistemi IoT, AI e servizi cloud.</p>
+              <div class="grid-4">
+              <article class="card">
+                <div><p style="text-align: center;"><img class="tech-img" src="../images/ANDROID.jpg" alt="ANDROID" width="80px"/></p></div>
+              <h3>Android</h3>
+              <p style="text-align: justify;">
+                Sviluppo mobile nativo per applicazioni integrate con servizi IoT, AI e backend cloud.
+              </p>
+              <a href="https://www.android.com/intl/it_it/" target="_blank" rel="noopener" class="link-inline">Scopri di più</a>
+              </article>
+              </div>
+            </div>
+        </section>
+<?php include '../includes/footer_it.php'; ?>

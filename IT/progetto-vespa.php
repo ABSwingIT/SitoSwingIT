@@ -1,0 +1,30 @@
+<?php 
+$path = "../";      // Siamo dentro una cartella, dobbiamo salire di un livello per trovare css e images
+$page = "R&I";    // Questo farà illuminare "R&I" nel menu
+include '../includes/header_it.php'; // Notare ../ prima di includes
+?>
+        <section class="inner-hero fade-in">
+          <div class="breadcrumb"><a href="../index.php">Home</a> / <a href="ricerca-innovazione.php">Ricerca e Innovazione</a> / Progetto VESPA</div>
+          <h1 class="inner-title">Progetto VESPA</ISIndex></h1>
+        </section>
+
+        <section class="content fade-in">
+          <div class="iub_header">
+            <p style="text-align: center;"><img src="../images/VESPA.png" alt="VESPA" class="wp-image-1868" style="width:400px"/></p>
+            <p style="text-align: left;"><strong>Guarda il Video documentario del Progetto VESPA</strong></p>
+            <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/35C6OwLMkz8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            <p><strong>Guarda il Video del convegno finale del Progetto VESPA</strong></p>
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/LZC_iS5Cv18" title="Convegno Finale del Progetto VESPA" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            <p><strong>Vai al <a href="http://www.progettovespa.it/" target="_blank" rel="noopener noreferrer">Sito di Progetto</a></strong></p>
+            <p style="text-align: justify;">Swing-It, come capofila, ha realizzato il Progetto "<strong>Virtual Environment for a Superior neuro-PsichiAtry</strong>" - <strong>VESPA</strong>, finanziato nell'ambito del POR Sicilia 2007/2013, Linea di intervento 4.1.1.1., il cui obiettivo primario è sviluppare un <strong>sistema computerizzato di Realtà Virtuale ad Immersione</strong>, telesupervisionabile da personale sanitario posto in strutture sanitarie remote, per la valutazione quantitativa e la riabilitazione delle funzioni cognitivo-motorie, tra gli altri, in individui con Ritardo Mentale, Specifici Deficit Linguistici o Demenza d'Alzheimer. Il sistema VESPA è <strong>installabile in presidi ospedalieri, scuole, strutture residenziali</strong>, etc.</p>
+            <p style="text-align: justify;">Il Progetto VESPA è realizzato da un ATS di Aziende e Organismi di Ricerca.</p>
+            <p style="text-align: justify;"><strong>Il Sistema VESPA permetterà ad una moltitudine di bambini e anziani di svolgere la quotidiana riabilitazione cognitivo-motoria direttamente a scuola o nelle strutture residenziali, garantendo la continuità dell'istruzione scolastica e dell'assistenza</strong> e, finalmente, risolvendo il problema per i care-giver di prelevare e riportare i figli a scuola o alle strutture residenziali dopo averli condotti alla sede della riabilitazione cognitivo-motoria.</p>
+            <p style="text-align: justify;">Il sistema VESPA è <strong>il primo apparato al mondo</strong> per la valutazione e la riabilitazione di funzioni cognitive-motorie (abilità visuo-spaziali 3-D, attenzione visiva e spaziale 3-D, apprendimento-memoria visiva verbale e spaziale 3-D, funzioni esecutive, pensiero astratto, etc.) in Realtà Virtuale ad Immersione, che integra la possibilità di supervisionare la procedura in videoconferenza (tele-supervisione) da parte di personale specializzato.</p>
+            <p style="text-align: justify;">Nella Realtà Virtuale ad Immersione, la persona manipola oggetti virtuali all'interno di scenari di realtà virtuale, sperimentando emozioni e sensazioni tattili al contatto grazie a guanti strumentati (ambiente digitale immersivo). Rispetto ad ogni altro sistema commerciale, il Sistema VESPA offre la possibilità di <strong>valutare numerose funzioni cognitivo-motorie prassiche e costruttive</strong> nello spazio 3D. L'esecuzione dei compiti in 3D permetterà di valutare i deficit visuospaziali a livello percettivo, attentivo e l'apprendimento-memoria, associati o meno al controllo fine del movimento manipolativo in 3D e ad istruzioni verbali per la valutazione della comprensione linguistica. I risultati dei compiti cognitivo-motori sono trasmessi ed elaborati in tempo reale via Internet per consentire una rimodulazione immediata ed efficace del protocollo riabilitativo.</p>
+            <p><strong>Online <a href="http://www.progettovespa.it/newsletter/1/">"VESPA In-forma"</a> il primo numero della Newsletter del Progetto VESPA</strong></p>
+            <p><a href="http://www.progettovespa.it/newsletter/1/"><img class="aligncenter wp-image-206 size-full" src="https://www.swing-it.net/wp-content/uploads/2024/09/article2-1.png" alt="" width="160" height="210" /></a></p>
+            <p><strong>Online <a href="http://www.progettovespa.it/newsletter/2/">"VESPA In-forma"</a> il secondo numero della Newsletter del Progetto VESPA</strong></p>
+            <p><a href="http://www.progettovespa.it/newsletter/2/"><img class="aligncenter wp-image-207 size-full" src="https://www.swing-it.net/wp-content/uploads/2024/09/article-1.png" alt="" width="160" height="216" /></a></p>
+        </div>
+        </section>
+<?php include '../includes/footer_it.php'; ?>

@@ -9,19 +9,19 @@ document.addEventListener('DOMContentLoaded', function () {
       const currentFolder = pathParts[pathParts.length - 2]; // Cartella corrente
 
       // Escludi le pagine index
-      if (currentPage === 'index.html' || currentPage === 'index_en.html' || currentPage === 'index_de.html') {
+      if (currentPage === 'index.php' || currentPage === 'index_en.php' || currentPage === 'index_de.php') {
         // Gestisci le pagine index separatamente
         if (lang === 'it') {
-          window.location.href = 'index.html';
+          window.location.href = 'index.php';
         } else if (lang === 'en') {
-          window.location.href = 'index_en.html';
+          window.location.href = 'index_en.php';
         } else if (lang === 'de') {
-          window.location.href = 'index_de.html';
+          window.location.href = 'index_de.php';
         }
         return;
       }
 
-      let targetPage = currentPage.replace(/(_[a-z]{2})?\.html$/, '');
+      let targetPage = currentPage.replace(/(_[a-z]{2})?\.php$/, '');
       let targetFolder = 'IT';
 
       if (lang === 'en') {
@@ -33,7 +33,7 @@ document.addEventListener('DOMContentLoaded', function () {
       if (lang !== 'it') {
         targetPage += '_' + lang;
       }
-      targetPage += '.html';
+      targetPage += '.php';
 
       // Ricostruisci il percorso relativo corretto
       let relativePath = '../' + targetFolder + '/' + targetPage;
