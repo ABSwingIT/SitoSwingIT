@@ -38,16 +38,16 @@
             </div>
           </div>
           <nav class="main-nav">
-            <a href="<?php echo $path; ?>index_de.php" class="<?php if($page == 'home') echo 'active'; ?>">Home</a>
-            <a href="<?php echo $path; ?>DE/chi-siamo_de.php" class="<?php if($page == 'chi-siamo_de') echo 'active'; ?>">Über</a>
-            <a href="<?php echo $path; ?>DE/engineering_de.php" class="<?php if($page == 'engineering_de') echo 'active'; ?>">Engineering</a>
-            <a href="<?php echo $path; ?>DE/prodotti_de.php" class="<?php if($page == 'prodotti_de') echo 'active'; ?>">Produkte</a>
-            <a href="<?php echo $path; ?>DE/tecnologie_de.php" class="<?php if($page == 'tecnologie_de') echo 'active'; ?>">Technologien</a>
-            <a href="<?php echo $path; ?>DE/ricerca-innovazione_de.php" class="<?php if($page == 'ricerca-innovazione_de') echo 'active'; ?>">F&E</a>
-            <a href="<?php echo $path; ?>DE/finanziamenti_de.php" class="<?php if($page == 'finanziamenti_de') echo 'active'; ?>">Finanzierung</a>
-            <a href="<?php echo $path; ?>DE/contatti_de.php" class="<?php if($page == 'contatti_de') echo 'active'; ?>">Kontakt</a>
-            <a href="<?php echo $path; ?>DE/lavora-con-noi_de.php" class="<?php if($page == 'lavora-con-noi_de') echo 'active'; ?>">Karriere</a>
-            <a href="<?php echo $path; ?>DE/privacy_de.php" class="<?php if($page == 'privacy_de') echo 'active'; ?>">Datenschutz</a>
+            <a href="<?php echo $path; ?>index_de.php" class="<?php echo($page == 'home') ? 'active' : ''; ?>">Home</a>
+            <a href="<?php echo $path; ?>DE/chi-siamo_de.php" class="<?php echo($page == 'uber') ? 'active' : ''; ?>">Über</a>
+            <a href="<?php echo $path; ?>DE/engineering_de.php" class="<?php echo($page == 'engineering') ? 'active' : ''; ?>">Engineering</a>
+            <a href="<?php echo $path; ?>DE/prodotti_de.php" class="<?php echo($page == 'produkte') ? 'active' : ''; ?>">Produkte</a>
+            <a href="<?php echo $path; ?>DE/tecnologie_de.php" class="<?php echo($page == 'technologien') ? 'active' : ''; ?>">Technologien</a>
+            <a href="<?php echo $path; ?>DE/ricerca-innovazione_de.php" class="<?php echo($page == 'forschung') ? 'active' : ''; ?>">F&E</a>
+            <a href="<?php echo $path; ?>DE/finanziamenti_de.php" class="<?php echo($page == 'finanzierung') ? 'active' : ''; ?>">Finanzierung</a>
+            <a href="<?php echo $path; ?>DE/contatti_de.php" class="<?php echo($page == 'kontakt') ? 'active' : ''; ?>">Kontakt</a>
+            <a href="<?php echo $path; ?>DE/lavora-con-noi_de.php" class="<?php echo($page == 'karriere') ? 'active' : ''; ?>">Karriere</a>
+            <a href="<?php echo $path; ?>DE/privacy_de.php" class="<?php echo($page == 'datenschutz') ? 'active' : ''; ?>">Datenschutz</a>
           </nav>
           <button class="nav-toggle" aria-label="Menü öffnen">
             <span class="nav-toggle-bar"></span>

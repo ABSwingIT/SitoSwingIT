@@ -1,6 +1,6 @@
 <?php 
 $path = "../";      // Siamo dentro una cartella, dobbiamo salire di un livello per trovare css e images
-$page = "Produkte";    // Questo farà illuminare "Produkte" nel menu
+$page = "produkte";    // Questo farà illuminare "Produkte" nel menu
 include '../includes/header_de.php'; // Notare ../ prima di includes
 ?>
         <section class="inner-hero fade-in">

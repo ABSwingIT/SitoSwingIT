@@ -39,16 +39,16 @@
             </div>
           </div>
           <nav class="main-nav">
-            <a href="<?php echo $path; ?>index.php" class="<?php if($page == 'home') echo 'active'; ?>">Home</a>
-            <a href="<?php echo $path; ?>IT/chi-siamo.php" class="<?php if($page == 'about') echo 'active'; ?>">About</a>
-            <a href="<?php echo $path; ?>IT/engineering.php" class="<?php if($page == 'engineering') echo 'active'; ?>">Engineering</a>
-            <a href="<?php echo $path; ?>IT/prodotti.php" class="<?php if($page == 'prodotti') echo 'active'; ?>">Prodotti</a>
-            <a href="<?php echo $path; ?>IT/tecnologie.php" class="<?php if($page == 'tecnologie') echo 'active'; ?>">Tecnologie</a>
-            <a href="<?php echo $path; ?>IT/ricerca-innovazione.php" class="<?php if($page == 'ricerca-innovazione') echo 'active'; ?>">R&I</a>
-            <a href="<?php echo $path; ?>IT/finanziamenti.php" class="<?php if($page == 'ricerca-innovazione') echo 'active'; ?>">Finanziamenti</a>
-            <a href="<?php echo $path; ?>IT/contatti.php" class="<?php if($page == 'contatti') echo 'active'; ?>">Contatti</a>
-            <a href="<?php echo $path; ?>IT/lavora-con-noi.php" class="<?php if($page == 'lavora-con-noi') echo 'active'; ?>">Careers</a>
-            <a href="<?php echo $path; ?>IT/privacy.php" class="<?php if($page == 'privacy') echo 'active'; ?>">Privacy</a>
+            <a href="<?php echo $path; ?>index.php" class="<?php echo ($page == 'home') ? 'active' : ''; ?>">Home</a>
+            <a href="<?php echo $path; ?>IT/chi-siamo.php" class="<?php echo ($page == 'about') ? 'active' : ''; ?>">About</a>
+            <a href="<?php echo $path; ?>IT/engineering.php" class="<?php echo ($page == 'engineering') ? 'active' : ''; ?>">Engineering</a>
+            <a href="<?php echo $path; ?>IT/prodotti.php" class="<?php echo ($page == 'prodotti') ? 'active' : ''; ?>">Prodotti</a>
+            <a href="<?php echo $path; ?>IT/tecnologie.php" class="<?php echo ($page == 'tecnologie') ? 'active' : ''; ?>">Tecnologie</a>
+            <a href="<?php echo $path; ?>IT/ricerca-innovazione.php" class="<?php echo ($page == 'ricerca') ? 'active' : ''; ?>">R&I</a>
+            <a href="<?php echo $path; ?>IT/finanziamenti.php" class="<?php echo ($page == 'finanziamenti') ? 'active' : ''; ?>">Finanziamenti</a>
+            <a href="<?php echo $path; ?>IT/contatti.php" class="<?php echo ($page == 'contatti') ? 'active' : ''; ?>">Contatti</a>
+            <a href="<?php echo $path; ?>IT/lavora-con-noi.php" class="<?php echo ($page == 'lavora-con-noi') ? 'active' : ''; ?>">Careers</a>
+            <a href="<?php echo $path; ?>IT/privacy.php" class="<?php echo ($page == 'privacy') ? 'active' : ''; ?>">Privacy</a>
           </nav>
           <button class="nav-toggle" aria-label="Apri il menu">
             <span class="nav-toggle-bar"></span>
